@@ -1,6 +1,6 @@
 import { auth } from '@/lib/firebase'
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
-import { setCookie } from 'cookies-next'
+import { deleteCookie, setCookie } from 'cookies-next'
 
 export async function signInWithGoogle() {
   try {
@@ -23,4 +23,5 @@ export async function signInWithGoogle() {
 
 export async function logout() {
   await signOut(auth)
+  deleteCookie('token')
 }
