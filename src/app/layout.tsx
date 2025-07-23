@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { useEffect } from "react";
-import { setupAuthListener } from "@/lib/auth-listener";
+import "../styles/globals.css";
+import RootClient from "@/store/rootClient";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,16 +23,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-  useEffect(() => {
-    setupAuthListener()
-  }, [])
-
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <RootClient />
         {children}
       </body>
     </html>
