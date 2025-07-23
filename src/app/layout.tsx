@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fira_Code, Work_Sans } from "next/font/google";
 import "../styles/globals.css";
 import RootClient from "@/store/rootClient";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const firaCode = Fira_Code({
+  variable: "--font-fira",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const workSans = Work_Sans({
+  variable: "--font-work",
   subsets: ["latin"],
 });
-
 export const metadata: Metadata = {
   title: "Taskly",
   description: "Your ultimate task and habits manager",
@@ -26,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${firaCode.variable} ${workSans.variable} antialiased`}
       >
         <RootClient />
         {children}
