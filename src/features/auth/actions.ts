@@ -14,7 +14,13 @@ export async function signInWithGoogle() {
       path: '/',
     })
 
-    return user
+    return {
+      uid: user.uid,
+      name: user.displayName || '',
+      email: user.email || '',
+      photoURL: user.photoURL || '',
+      token,
+    }
   } catch (error) {
     console.error('Erro no login com Google:', error)
     throw error
