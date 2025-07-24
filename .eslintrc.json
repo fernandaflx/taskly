@@ -1,13 +1,20 @@
 {
-  "extends": ["next/core-web-vitals", "plugin:tailwindcss/recommended", "prettier"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:tailwindcss/recommended",
+    "prettier"
+  ],
   "plugins": ["tailwindcss"],
   "rules": {
     "no-console": "warn",
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { "argsIgnorePattern": "^_" }
+    ],
     "react/jsx-uses-react": "off",
     "react/jsx-uses-vars": "error",
-    "prefer-const": "warn",
+    "prefer-const": "off",
     "eqeqeq": ["error", "always"],
     "no-empty-function": "warn"
   }

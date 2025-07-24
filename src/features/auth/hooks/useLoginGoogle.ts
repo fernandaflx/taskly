@@ -1,10 +1,10 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import { signInWithGoogle } from '@/features/auth/actions'
 import { useUserStore } from '@/store/useUserStore'
+import { loginWithGoogle } from '@/features/auth/actions/loginWithGoogle'
 
-export const useLoginWithGoogle = () => {
+export function useLoginWithGoogle() {
   const setUser = useUserStore((state) => state.setUser)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error | null>(null)
@@ -13,11 +13,19 @@ export const useLoginWithGoogle = () => {
     setLoading(true)
     setError(null)
     try {
-      const user = await signInWithGoogle()
-      setUser(user)
+      const user = await loginWithGoogle()
+      setUser({
+        uid: user.uid,
+        name: user.displayName || '',
+        email: user.email || '',
+        photoURL: user.photoURL || undefined,
+        token: await user.getIdToken(),
+        theme: 'light',
+      })
+      return user
     } catch (err) {
       setError(err as Error)
-      console.error('Falha ao logar com Google:', err)
+      throw err
     } finally {
       setLoading(false)
     }

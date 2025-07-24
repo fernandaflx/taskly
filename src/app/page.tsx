@@ -1,48 +1,38 @@
 'use client'
 
-import Iridescence from "@/components/Home/Iridescence";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { useLoginWithGoogle } from "@/hooks/useLogin";
-import { useRouter } from "next/navigation";
-import { FaGoogle } from "react-icons/fa";
+import Iridescence from '@/components/Home/Iridescence'
+import { LoginForm } from '@/components/Login'
+
 
 export default function Home() {
-  const router = useRouter()
-  const { login: loginWithGoogle, loading } = useLoginWithGoogle()
-
   return (
-    <div className="flex justify-center items-center w-screen h-screen">
-      <Iridescence
-        color={[0.5, 0.6, 0.8]}
-        mouseReact={false}
-        amplitude={0.1}
-        speed={0.5}
-      />
-      <div className="absolute w-screen h-screen flex flex-col justify-center items-center rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-80">
-        <p className="text-4xl font-bold text-white">
-          TASKLY
-        </p>
-        <p className="text-xl font-bold text-white font-fira">
-          Your ultimate task and habit manager
-        </p>
+    <div className="relative w-screen h-screen flex">
+      <div
+        className="
+          absolute inset-0
+          bg-white/20 backdrop-blur-md
+          md:w-1/2 md:flex md:relative
+          md:bg-white/20 md:backdrop-blur-md
+          -z-10
+          flex justify-center items-center
+        "
+      >
+        <Iridescence
+          color={[0.5, 0.6, 0.8]}
+          mouseReact={false}
+          amplitude={0.1}
+          speed={0.5}
+        />
 
-        <div className="grid grid-cols-1 gap-2 md:grid-cols-2 mt-8">
-          <Button onClick={() => router.push('/login')}> Login</Button>
-          <Button onClick={() => router.push('/register')}>Create an Account</Button>
+        <div className="hidden md:flex md:flex-col absolute inset-0 justify-center items-center text-white  font-bold z-10">
+          <p className='text-6xl'>TASKLY</p>
+          <p className='font-fira'>Your ultimate task manager</p>
         </div>
+      </div>
 
-        <div className="flex items-center gap-2 my-3.5 w-full max-w-xs">
-          <Separator className="flex-1 bg-white/40 h-px" />
-          <span className="text-sm text-white/70">or</span>
-          <Separator className="flex-1 bg-white/40 h-px" />
-        </div>
-
-        <Button type="submit" onClick={loginWithGoogle} >
-          <FaGoogle />
-          Continue with Gmail
-        </Button>
+      <div className="w-full md:w-1/2 h-full flex justify-center items-center md:bg-white relative z-20">
+        <LoginForm />
       </div>
     </div>
-  );
+  )
 }
