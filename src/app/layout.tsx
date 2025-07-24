@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Fira_Code, Work_Sans } from "next/font/google";
-import "../styles/globals.css";
+import "./globals.css";
 import RootClient from "@/store/rootClient";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/Sidebar";
 
 const firaCode = Fira_Code({
   variable: "--font-fira",
@@ -27,8 +29,14 @@ export default function RootLayout({
       <body
         className={`${firaCode.variable} ${workSans.variable} antialiased`}
       >
-        <RootClient />
-        {children}
+        <SidebarProvider>
+          <AppSidebar />
+          <main>
+            <SidebarTrigger />
+            <RootClient />
+            {children}
+          </main>
+        </SidebarProvider>
       </body>
     </html>
   );
