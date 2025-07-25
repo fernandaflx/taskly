@@ -47,7 +47,7 @@ void main() {
 }
 `;
 
-interface IridescenceProps {
+interface HomeBackgroundProps {
   color?: [number, number, number];
   speed?: number;
   amplitude?: number;
@@ -55,14 +55,14 @@ interface IridescenceProps {
   className?: string
 }
 
-export default function Iridescence({
+export default function HomeBackground({
   color = [1, 1, 1],
   speed = 1.0,
   amplitude = 0.1,
   mouseReact = true,
   className,
   ...rest
-}: IridescenceProps) {
+}: HomeBackgroundProps) {
   const ctnDom = useRef<HTMLDivElement>(null);
   const mousePos = useRef({ x: 0.5, y: 0.5 });
 

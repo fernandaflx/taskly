@@ -28,11 +28,13 @@ import {
 import { useState } from 'react'
 import { FaGoogle } from "react-icons/fa"
 
-import { Divider } from "../commom/Divider"
+
 import { useLoginWithEmail } from "@/features/auth/hooks/useLoginEmail"
 import { useLoginWithGoogle } from "@/features/auth/hooks/useLoginGoogle"
 import { useRouter } from "next/navigation"
-import { Spinner } from "../ui/spinner"
+import { Divider } from "@/components/Divider"
+import { Loader2Icon } from "lucide-react"
+
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Enter a valid email." }),
@@ -132,7 +134,7 @@ export const LoginForm = () => {
 
               <Button type="submit" className="w-full" disabled={emailLoading}>
                 {emailLoading ? (
-                  <Spinner size='sm' />
+                  <Loader2Icon className="animate-spin" />
                 ) : "Login"}
               </Button>
 

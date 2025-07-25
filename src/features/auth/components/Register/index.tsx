@@ -18,11 +18,12 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { FaGoogle } from "react-icons/fa"
 
-import { Divider } from "../commom/Divider"
+import { Divider } from "@/components/Divider"
 import { useLoginWithGoogle } from "@/features/auth/hooks/useLoginGoogle";
 import { useRegisterWithEmail } from "@/features/auth/hooks/useRegisterWithEmail";
 import { useRouter } from "next/navigation";
-import { Spinner } from "../ui/spinner";
+import { Loader2Icon } from "lucide-react";
+
 
 export const RegisterForm = () => {
   const router = useRouter()
@@ -70,7 +71,9 @@ export const RegisterForm = () => {
             />
           ))}
           <Button type="submit" className="block mx-auto" disabled={loading}>
-            {loading ? <Spinner /> : 'Create account'}
+            {loading ?
+              <Loader2Icon className="animate-spin" />
+              : 'Create account'}
           </Button>
 
           <Divider />

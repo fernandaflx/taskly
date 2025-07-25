@@ -1,7 +1,10 @@
 'use client'
 
-import Iridescence from '@/components/Home/Iridescence'
-import { LoginForm } from '@/components/Login'
+import HomeBackground from "@/components/HomeBackground"
+import { LoginForm } from "@/features/auth/components/Login"
+
+
+
 
 
 export default function Home() {
@@ -17,7 +20,7 @@ export default function Home() {
           flex justify-center items-center
         "
       >
-        <Iridescence
+        <HomeBackground
           color={[0.5, 0.6, 0.8]}
           mouseReact={false}
           amplitude={0.1}

@@ -1,10 +1,11 @@
-import Iridescence from "@/components/Home/Iridescence";
-import { RegisterForm } from "@/components/Register";
+import HomeBackground from "@/components/HomeBackground";
+import { RegisterForm } from "@/features/auth/components/Register";
+
 
 export default function Register() {
   return (
     <div className="relative w-screen h-screen flex">
-      <Iridescence
+      <HomeBackground
         color={[0.5, 0.6, 0.8]}
         mouseReact={false}
         amplitude={0.1}

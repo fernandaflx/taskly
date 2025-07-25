@@ -1,6 +1,6 @@
 'use client'
 
-import { Calendar, Home, Inbox, Search, Settings, Star, LogOut, SettingsIcon as Setting } from "lucide-react"
+import { Home, Star, LogOut, SettingsIcon as Setting } from "lucide-react"
 
 import {
   Sidebar,
