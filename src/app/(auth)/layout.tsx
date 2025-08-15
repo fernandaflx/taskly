@@ -6,9 +6,6 @@ import RootClient from "@/store/rootClient"
 import { useUserStore } from "@/store/useUserStore"
 
 function LayoutContent({ children }: { children: React.ReactNode }) {
-  const { open } = useSidebar()
-
-
   return (
     <main
       className={
@@ -29,7 +26,9 @@ export default function AuthenticatedLayout({ children }: { children: React.Reac
   return (
     <SidebarProvider>
       <AppSidebar />
-      <LayoutContent>{children}</LayoutContent>
+      <LayoutContent>
+        {children}
+      </LayoutContent>
     </SidebarProvider>
   )
 }

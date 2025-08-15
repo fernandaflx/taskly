@@ -3,22 +3,18 @@ export type WeatherResponse = {
     name: string
     region: string
     country: string
-    lat: string
-    lon: string
-    tz_id: string
-    localtime_epoch: string
-    localtime: string
   }
   current: {
-    temp_c: string
-    is_day: string
-    condition: {
-      text: string
-      icon: string
-      code: string
-    }
-    humidity: string
-    cloud: string
-    feelslike_c: string
+    temperature: number
+    is_day: number
+    text: string
+    icon: string
   }
+  forecast: {
+    max_temp: number
+    min_temp: number
+  }
+
+  loading: boolean
+  error: boolean
 }

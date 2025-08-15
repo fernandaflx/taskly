@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { WeatherResponse } from '@/types/weather'
+import { useState } from 'react'
 
 const API_KEY = '2864a9b2e5364120a7553419252407'
-const BASE_URL = 'https://api.weatherapi.com/v1/current.json'
+const BASE_URL = 'https://api.weatherapi.com/v1/forecast.json'
 
 const getUserLocation = (): Promise<{
   latitude: number
@@ -37,7 +38,7 @@ const fetchWeather = async (): Promise<WeatherResponse> => {
   const language = getUserLanguage()
   const location = await getUserLocation()
 
-  const { data } = await axios.get<WeatherResponse>(BASE_URL, {
+  const { data } = await axios.get(BASE_URL, {
     params: {
       key: API_KEY,
       q: `${location.latitude},${location.longitude}`,
@@ -45,7 +46,26 @@ const fetchWeather = async (): Promise<WeatherResponse> => {
     },
   })
 
-  return data
+  const response: WeatherResponse = {
+    location: {
+      name: data?.location?.name as string,
+      region: data?.location?.region as string,
+      country: data?.location?.country as string,
+    },
+    current: {
+      temperature: data?.current?.temp_c as number,
+      is_day: data?.current?.is_day as number,
+      text: data?.current?.condition?.text as string,
+      icon: data?.current?.condition?.icon as string,
+    },
+    forecast: {
+      max_temp: data?.forecast?.forecastday[0]?.day?.maxtemp_c as number,
+      min_temp: data?.forecast?.forecastday[0]?.day?.mintemp_c as number,
+    },
+    loading: false,
+    error: false,
+  }
+  return response
 }
 
 export const useWeather = () => {
