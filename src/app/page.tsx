@@ -1,7 +1,7 @@
 'use client'
 
 import HomeBackground from "@/components/HomeBackground"
-import { LoginForm } from "@/features/auth/components/Login"
+import { LoginForm } from "@/features/auth/components/LoginForm"
 
 
 

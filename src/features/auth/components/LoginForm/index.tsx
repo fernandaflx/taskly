@@ -1,6 +1,7 @@
 'use client'
 
-import * as React from "react"
+// import * as React from "react"
+// import { useRef } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -28,12 +29,15 @@ import {
 import { useState } from 'react'
 import { FaGoogle } from "react-icons/fa"
 
-
 import { useLoginWithEmail } from "@/features/auth/hooks/useLoginEmail"
 import { useLoginWithGoogle } from "@/features/auth/hooks/useLoginGoogle"
 import { useRouter } from "next/navigation"
 import { Divider } from "@/components/Divider"
 import { Loader2Icon } from "lucide-react"
+import Link from "next/link"
+import { LoginWithEmailButton, LoginWithGoogleButton } from "./Buttons"
+import { PasswordInput } from "./CustomInput"
+
 
 
 const loginSchema = z.object({
@@ -48,7 +52,7 @@ export const LoginForm = () => {
   const router = useRouter()
 
   const { login: loginWithEmail, loading: emailLoading } = useLoginWithEmail()
-  const { login: loginWithGoogle } = useLoginWithGoogle()
+  const { login: loginWithGoogle, loading: googleLoading } = useLoginWithGoogle()
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -99,63 +103,36 @@ export const LoginForm = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
-                      <div className="flex items-center w-full">
-                        <span>Password</span>
-                        <a
-                          href="/forgot-password"
-                          className="text-sm ml-auto underline underline-offset-4"
-                        >
-                          Forgot your password?
-                        </a>
-                      </div>
+                      Password
                     </FormLabel>
 
                     <FormControl>
-                      <div className="relative">
-                        <Input
-                          type={showPassword ? "text" : "password"}
-                          {...field}
-                          className="pr-10"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                          aria-label={showPassword ? "Hide password" : "Show password"}
-                        >
-                          {showPassword ? <LuEyeClosed /> : <LuEye />}
-                        </button>
-                      </div>
+                      <PasswordInput {...field} />
                     </FormControl>
                     <FormMessage />
+                    <Link
+                      href="/forgot-password"
+                      className="text-sm ml-auto underline underline-offset-4"
+                    >
+                      Forgot your password?
+                    </Link>
                   </FormItem>
                 )}
               />
 
-              <Button type="submit" className="w-full" disabled={emailLoading}>
-                {emailLoading ? (
-                  <Loader2Icon className="animate-spin" />
-                ) : "Login"}
-              </Button>
+              <LoginWithEmailButton loading={emailLoading} />
 
               <Divider />
-
-              <Button
-                variant="outline"
-                className="w-full flex justify-center items-center gap-2"
-                onClick={loginWithGoogle}
-
-              >
-                <FaGoogle />
-                Login with Google
-              </Button>
             </form>
           </Form>
+
+          <LoginWithGoogleButton loading={googleLoading} submit={loginWithGoogle} />
+
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}
-            <a href="/register" className="underline underline-offset-4">
+            <Link href="/register">
               Sign up
-            </a>
+            </Link>
           </div>
         </CardContent>
       </Card>
