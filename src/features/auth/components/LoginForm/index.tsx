@@ -6,8 +6,6 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { cn } from "@/lib/utils"
-import { LuEye, LuEyeClosed } from "react-icons/lu"
-
 import {
   Form,
   FormControl,
@@ -17,7 +15,6 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
   Card,
@@ -26,29 +23,23 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { useState } from 'react'
-import { FaGoogle } from "react-icons/fa"
-
 import { useLoginWithEmail } from "@/features/auth/hooks/useLoginEmail"
 import { useLoginWithGoogle } from "@/features/auth/hooks/useLoginGoogle"
 import { useRouter } from "next/navigation"
 import { Divider } from "@/components/Divider"
-import { Loader2Icon } from "lucide-react"
 import Link from "next/link"
 import { LoginWithEmailButton, LoginWithGoogleButton } from "./Buttons"
 import { PasswordInput } from "./CustomInput"
-
-
+import { toast } from "sonner"
 
 const loginSchema = z.object({
-  email: z.string().email({ message: "Enter a valid email." }),
+  email: z.email({ message: "Enter a valid email." }),
   password: z.string().min(6, { message: "Password must be at least 6 characters long." }),
 })
 
 type LoginFormValues = z.infer<typeof loginSchema>
 
 export const LoginForm = () => {
-  const [showPassword, setShowPassword] = useState(false)
   const router = useRouter()
 
   const { login: loginWithEmail, loading: emailLoading } = useLoginWithEmail()
@@ -67,7 +58,7 @@ export const LoginForm = () => {
       await loginWithEmail(data.email, data.password)
       router.push("/dashboard")
     } catch (error) {
-      console.log(error)
+      toast.error(error as string)
     }
   }
 

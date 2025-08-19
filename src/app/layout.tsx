@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Fira_Code, Work_Sans } from "next/font/google";
 import "./globals.css";
 import RootClient from "@/store/rootClient";
-import { useState } from "react";
 import { ReactQueryProvider } from "./provider/ ReactQueryProvider";
+import { Toast } from "@/components/Toast";
 
 const firaCode = Fira_Code({
   variable: "--font-fira",
@@ -31,7 +31,11 @@ export default function RootLayout({
         className={`${firaCode.variable} ${workSans.variable} antialiased`}
       >
         <RootClient />
-        <ReactQueryProvider>{children}</ReactQueryProvider>
+        <ReactQueryProvider>
+          {children}
+        </ReactQueryProvider>
+
+        <Toast />
 
       </body>
     </html>

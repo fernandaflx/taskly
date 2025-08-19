@@ -1,9 +1,9 @@
-// src/features/auth/actions/loginWithEmail.ts
 'use client'
 
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/lib/firebase'
 import { saveUserToFirestore } from './saveUserToFirestore'
+import { getFirebaseAuthError } from '@/utils/firebase-errors'
 
 export async function loginWithEmail({
   email,
@@ -24,7 +24,6 @@ export async function loginWithEmail({
 
     return result.user
   } catch (error) {
-    console.error('Erro ao fazer login:', error)
-    throw error
+    throw getFirebaseAuthError(error)
   }
 }
