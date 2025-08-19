@@ -3,10 +3,6 @@
 import HomeBackground from "@/components/HomeBackground"
 import { LoginForm } from "@/features/auth/components/LoginForm"
 
-
-
-
-
 export default function Home() {
   return (
     <div className="relative w-screen h-screen flex">
@@ -27,7 +23,7 @@ export default function Home() {
           speed={0.5}
         />
 
-        <div className="hidden md:flex md:flex-col absolute inset-0 justify-center items-center text-white  font-bold z-10">
+        <div className="hidden md:flex md:flex-col absolute inset-0 justify-center items-center text-white font-bold z-10">
           <p className='text-6xl'>TASKLY</p>
           <p className='font-fira'>Your ultimate task manager</p>
         </div>
