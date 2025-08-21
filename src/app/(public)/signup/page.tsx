@@ -1,8 +1,8 @@
 import HomeBackground from "@/components/HomeBackground";
-import { RegisterForm } from "@/features/auth/components/Register";
+import { SignUpForm } from "@/features/auth/components/SignUp";
 
 
-export default function Register() {
+export default function SignUp() {
   return (
     <div className="relative w-screen h-screen flex">
       <HomeBackground
@@ -13,7 +13,7 @@ export default function Register() {
         className="absolute inset-0 -z-10"
       />
       <div className="relative z-10 flex justify-center items-center max-w-sm w-full mx-auto">
-        <RegisterForm />
+        <SignUpForm />
       </div>
     </div>
   )

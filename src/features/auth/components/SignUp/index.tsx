@@ -25,7 +25,7 @@ import { useRouter } from "next/navigation";
 import { Loader2Icon } from "lucide-react";
 
 
-export const RegisterForm = () => {
+export const SignUpForm = () => {
   const router = useRouter()
   const { login: loginWithGoogle } = useLoginWithGoogle()
   const { register, loading } = useRegisterWithEmail()

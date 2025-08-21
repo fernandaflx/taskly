@@ -101,7 +101,7 @@ export const LoginForm = () => {
                     <FormMessage />
                     <Link
                       href="/forgot-password"
-                      className="text-sm ml-auto underline underline-offset-4"
+                      className="text-sm ml-auto underline underline-offset-4 font-medium"
                     >
                       Forgot your password?
                     </Link>
@@ -116,11 +116,10 @@ export const LoginForm = () => {
           </Form>
 
           <LoginWithGoogleButton />
-          {/* <LoginWithGoogleButton loading={googleLoading} submit={loginWithGoogle} /> */}
 
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}
-            <Link href="/register">
+            <Link href="/register" className="underline underline-offset-4 font-medium">
               Sign up
             </Link>
           </div>
