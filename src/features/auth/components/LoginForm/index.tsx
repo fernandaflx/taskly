@@ -1,7 +1,5 @@
 'use client'
 
-// import * as React from "react"
-// import { useRef } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -117,7 +115,8 @@ export const LoginForm = () => {
             </form>
           </Form>
 
-          <LoginWithGoogleButton loading={googleLoading} submit={loginWithGoogle} />
+          <LoginWithGoogleButton />
+          {/* <LoginWithGoogleButton loading={googleLoading} submit={loginWithGoogle} /> */}
 
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}
