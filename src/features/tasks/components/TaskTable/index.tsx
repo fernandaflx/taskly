@@ -25,6 +25,13 @@ export default function TaskTable() {
       status: 'done',
       board: 'Personal',
     },
+    {
+      id: '3',
+      name: 'Revisar portfólio',
+      due_date: '2025-09-06',
+      status: 'archived',
+      board: 'Personal',
+    },
   ]
 
   return (
