@@ -1,6 +1,9 @@
+import { Button } from "@/components/ui/button";
 import { TaskColumns } from "../../models";
 import { columns } from "./colums";
 import { DataTable } from "./data-table";
+import { LuPlus } from "react-icons/lu";
+import { NewTask } from "../NewTask";
 
 export default function TaskTable() {
   const data: TaskColumns[] = [
@@ -35,6 +38,10 @@ export default function TaskTable() {
   ]
 
   return (
-    <DataTable data={data} columns={columns} />
+    <div className="flex flex-col gap-4">
+      <DataTable data={data} columns={columns} />
+
+      <NewTask />
+    </div>
   )
 }
