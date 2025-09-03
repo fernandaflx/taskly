@@ -20,6 +20,7 @@ interface DataTableProps<TData> {
   data: TData[]
 }
 
+
 export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
   const table = useReactTable({
     data,
@@ -34,7 +35,7 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <TableHead key={header.id}>
+                <TableHead key={header.id} className="font-semibold" >
                   {header.isPlaceholder
                     ? null
                     : flexRender(header.column.columnDef.header, header.getContext())}

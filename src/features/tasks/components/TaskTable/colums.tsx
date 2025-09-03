@@ -17,17 +17,14 @@ import { capitalize } from "@/utils/capitalize"
 export const columns: ColumnDef<TaskColumns>[] = [
   {
     id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={table.getIsAllRowsSelected()}
-        onCheckedChange={(value) => table.toggleAllRowsSelected(!!value)}
-      />
-    ),
     cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-      />
+      <div className="flex justify-center">
+        <Checkbox
+          checked={row.getIsSelected()}
+          onCheckedChange={(value) => row.toggleSelected(!!value)}
+          aria-label="Select task"
+        />
+      </div>
     ),
   },
   {
@@ -36,23 +33,33 @@ export const columns: ColumnDef<TaskColumns>[] = [
   },
   {
     accessorKey: "due_date",
-    header: "Due date",
+    header: () => <p className="text-center">Due Date</p>,
+    cell: ({ row }) => (
+      <p className="text-center">
+        {row.original.due_date}
+      </p>
+    ),
   },
   {
     accessorKey: "status",
-    header: "Status",
+    header: () => <p className="text-center">Status</p>,
     cell: ({ row }) => {
       const status = row.original.status
       return (
-        <Badge variant={status} className="w-20">
-          {capitalize(status)}
-        </Badge>
+        <div className="flex justify-center">
+          <Badge variant={status} className="w-20">
+            {capitalize(status)}
+          </Badge>
+        </div>
       )
     },
   },
   {
     accessorKey: "board",
-    header: "Board",
+    header: () => <p className="text-center">Board</p>,
+    cell: ({ row }) => (
+      <p className="text-center">{row.original.board}</p>
+    ),
   },
   {
     id: "actions",
