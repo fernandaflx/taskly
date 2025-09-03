@@ -20,7 +20,7 @@ interface DataTableProps<TData> {
   data: TData[]
 }
 
-export function TaskTable<TData>({ columns, data }: DataTableProps<TData>) {
+export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
   const table = useReactTable({
     data,
     columns,
@@ -28,7 +28,7 @@ export function TaskTable<TData>({ columns, data }: DataTableProps<TData>) {
   })
 
   return (
-    <div className="overflow-hidden rounded-md border">
+    <div className="overflow-hidden rounded-md border w-full">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
