@@ -1,7 +1,7 @@
 // store.ts ou useUserStore.ts
 import { create } from 'zustand'
 import { onAuthStateChanged, getIdToken } from 'firebase/auth'
-import { auth } from '@/lib/firebase' // importe aqui
+import { auth } from '@/lib/firebase'
 
 type Theme = 'light' | 'dark'
 

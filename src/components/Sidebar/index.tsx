@@ -1,6 +1,6 @@
 'use client'
 
-import { Home, Star, LogOut, SettingsIcon as Setting } from "lucide-react"
+import { Home, Star, LogOut as LogOutIcon, SettingsIcon } from "lucide-react"
 
 import {
   Sidebar,
@@ -19,6 +19,8 @@ import { UserLabel } from "./UserLabel"
 import { Button } from "../ui/button"
 import clsx from "clsx"
 
+import { useLogout } from "@/features/auth/hooks/useLogOut"
+
 const items = [
   {
     title: "Home",
@@ -29,18 +31,6 @@ const items = [
     title: "Favorites",
     url: "/dashboard/favorites",
     icon: Star,
-  },
-
-]
-
-const footerItems = [
-  {
-    url: "#",
-    icon: Setting,
-  },
-  {
-    url: "#",
-    icon: LogOut,
   },
 
 ]
@@ -58,6 +48,19 @@ export const AppSidebar = () => {
 
   const { user } = useUserStore()
 
+  const LogOut = useLogout()
+
+  const footerItems = [
+    {
+      action: () => { console.log('click') },
+      icon: SettingsIcon,
+    },
+    {
+      action: LogOut,
+      icon: LogOutIcon,
+    },
+
+  ]
 
   return (
     <Sidebar collapsible='icon'>
@@ -90,7 +93,7 @@ export const AppSidebar = () => {
         >
           {footerItems.map((item, index) => (
             <SidebarMenuButton key={index} asChild>
-              <Button className="w-auto" variant='ghost'>
+              <Button className="w-auto" variant='ghost' onClick={item.action}>
                 <item.icon />
               </Button>
             </SidebarMenuButton>
